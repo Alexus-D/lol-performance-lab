@@ -22,43 +22,43 @@ date | queue | champ | role | autofill | result | cs10 | first_clear_status | de
 3) Вставь формулы (см. ниже). Если лист Data называется по‑другому — поменяй имя в формулах.
 
 Средний CS@10 (мид, без автофилла, за весь период):
-=AVERAGEIFS(Data!G:G, Data!D:D, "mid", Data!E:E, "N", Data!G:G, ">0")
+=AVERAGEIFS(Data!G:G; Data!D:D; "mid"; Data!E:E; "N"; Data!G:G; ">0")
 
 Средний Deaths<10 (мид, без автофилла):
-=AVERAGEIFS(Data!I:I, Data!D:D, "mid", Data!E:E, "N")
+=AVERAGEIFS(Data!I:I; Data!D:D; "mid"; Data!E:E; "N")
 
 Clean first clear rate (лес):
-=IFERROR( COUNTIFS(Data!D:D,"jungle", Data!H:H,"clean") / COUNTIFS(Data!D:D,"jungle"), 0 )
+=IFERROR( COUNTIFS(Data!D:D;"jungle"; Data!H:H;"clean") / COUNTIFS(Data!D:D;"jungle"); 0 )
 
 Участие в ранних объектах (лес):
-=IFERROR( AVERAGEIFS(Data!L:L, Data!D:D,"jungle"), 0 )
+=IFERROR( AVERAGEIFS(Data!L:L; Data!D:D;"jungle"); 0 )
 
 Процент автофилла:
-=IFERROR( COUNTIFS(Data!E:E,"Y") / COUNTA(Data!A:A), 0 )
+=IFERROR( COUNTIFS(Data!E:E;"Y") / COUNTA(Data!A:A); 0 )
 
 Топ‑тег первой смерти (по частоте) — можно посчитать фильтром или формулой:
-=INDEX(UNIQUE(FILTER(Data!M:M, Data!M:M<>"")), MATCH( MAX(COUNTIF(Data!M:M, UNIQUE(FILTER(Data!M:M, Data!M:M<>"")))), COUNTIF(Data!M:M, UNIQUE(FILTER(Data!M:M, Data!M:M<>""))), 0 ))
+=INDEX(UNIQUE(FILTER(Data!M:M; Data!M:M<>"")); MATCH( MAX(COUNTIF(Data!M:M; UNIQUE(FILTER(Data!M:M; Data!M:M<>"")))); COUNTIF(Data!M:M; UNIQUE(FILTER(Data!M:M; Data!M:M<>""))); 0 ))
 
 Метрики за текущую неделю (подставляет ключ из A2, например 2025-W36):
 Сначала добавь на лист Data служебную колонку P (WeekKey) с формулой в P2:
-=TEXT(A2,"yyyy")&"-W"&TEXT(WEEKNUM(A2,2),"00")
+=TEXT(A2;"yyyy")&"-W"&TEXT(WEEKNUM(A2;2);"00")
 Скопируй вниз.
 
 Теперь в Summary:
 CS@10 (мид, текущая неделя):
-=AVERAGEIFS(Data!G:G, Data!D:D,"mid", Data!E:E,"N", Data!P:P,$A$2, Data!G:G,">0")
+=AVERAGEIFS(Data!G:G; Data!D:D;"mid"; Data!E:E;"N"; Data!P:P;$A$2; Data!G:G;">0")
 
 Deaths<10 (мид, текущая неделя):
-=AVERAGEIFS(Data!I:I, Data!D:D,"mid", Data!E:E,"N", Data!P:P,$A$2)
+=AVERAGEIFS(Data!I:I; Data!D:D;"mid"; Data!E:E;"N"; Data!P:P;$A$2)
 
 Clean clear rate (лес, текущая неделя):
-=IFERROR( COUNTIFS(Data!D:D,"jungle", Data!H:H,"clean", Data!P:P,$A$2) / COUNTIFS(Data!D:D,"jungle", Data!P:P,$A$2), 0 )
+=IFERROR( COUNTIFS(Data!D:D;"jungle"; Data!H:H;"clean"; Data!P:P;$A$2) / COUNTIFS(Data!D:D;"jungle"; Data!P:P;$A$2); 0 )
 
 Участие в ранних объектах (лес, текущая неделя):
-=IFERROR( AVERAGEIFS(Data!L:L, Data!D:D,"jungle", Data!P:P,$A$2), 0 )
+=IFERROR( AVERAGEIFS(Data!L:L; Data!D:D;"jungle"; Data!P:P;$A$2); 0 )
 
 Сумма времени за неделю (мин):
-=SUMIFS(Data!N:N, Data!P:P, $A$2)
+=SUMIFS(Data!N:N; Data!P:P; $A$2)
 
 Шаг 3 — Графики
 - Вставка → Диаграмма → Линейная: по Data!A:A (даты) и Data!G:G (CS@10, отфильтровать role=mid, autofill=N).
