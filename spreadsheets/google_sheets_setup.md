@@ -37,7 +37,7 @@ Clean first clear rate (лес):
 =IFERROR( COUNTIFS(Data!E:E;"Y") / COUNTA(Data!A:A); 0 )
 
 Топ‑тег первой смерти (по частоте) — можно посчитать фильтром или формулой:
-INDEX(UNIQUE(FILTER(Data!M2:M; Data!M2:M<>"")); MATCH( MAX(COUNTIF(Data!M2:M; UNIQUE(FILTER(Data!M2:M; Data!M2:M<>"")))); COUNTIF(Data!M2:M; UNIQUE(FILTER(Data!M2:M; Data!M2:M<>""))); 0 ))
+=INDEX(UNIQUE(FILTER(Data!M2:M; Data!M2:M<>"")); MATCH( MAX(COUNTIF(Data!M2:M; UNIQUE(FILTER(Data!M2:M; Data!M2:M<>"")))); COUNTIF(Data!M2:M; UNIQUE(FILTER(Data!M2:M; Data!M2:M<>""))); 0 ))
 
 Метрики за текущую неделю (подставляет ключ из A2, например 2025-W36):
 Сначала добавь на лист Data служебную колонку P (WeekKey) с формулой в P2:

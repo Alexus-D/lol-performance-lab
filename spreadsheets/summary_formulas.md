@@ -21,7 +21,7 @@
 =IFERROR( COUNTIFS(Data!E:E;"Y") / COUNTA(Data!A:A); 0 )
 
 7) Топ-тег первой смерти (по частоте):
-INDEX(UNIQUE(FILTER(Data!M2:M; Data!M2:M<>"")); MATCH( MAX(COUNTIF(Data!M2:M; UNIQUE(FILTER(Data!M2:M; Data!M2:M<>"")))); COUNTIF(Data!M2:M; UNIQUE(FILTER(Data!M2:M; Data!M2:M<>""))); 0 ))
+=INDEX(UNIQUE(FILTER(Data!M2:M; Data!M2:M<>"")); MATCH( MAX(COUNTIF(Data!M2:M; UNIQUE(FILTER(Data!M2:M; Data!M2:M<>"")))); COUNTIF(Data!M2:M; UNIQUE(FILTER(Data!M2:M; Data!M2:M<>""))); 0 ))
 
 (Это "массовая" формула — в Google Sheets может потребоваться Ctrl+Shift+Enter. Если сложно — просто посчитай визуально по фильтру.)
 
